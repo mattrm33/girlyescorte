@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique Girly</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: linear-gradient(135deg, #ffb6f9, #ff66cc);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 30px;
+      font-size: 50px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff66ff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff66ff, 0 0 20px #ff33ff; }
+      to { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff66ff; }
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255, 182, 249, 0.9);
+      border: 3px solid #ff66ff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 20px #ff00ff;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px #ff00ff, 0 0 50px #ff66ff;
+    }
+
+    .card h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #fff;
+      text-shadow: 0 0 5px #ff00ff;
+    }
+
+    .price {
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      background: #ff33aa;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff66ff;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ff0099;
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff66ff;
+      transform: scale(1.05);
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ff33aa;
+      padding: 20px;
+      border-radius: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      box-shadow: 0 0 20px #ff00ff;
+      display: none;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    footer {
+      padding: 20px;
+      margin-top: 50px;
+      background: rgba(255, 51, 170, 0.9);
+      box-shadow: 0 0 15px #ff00ff;
+      border-top: 3px solid #ff66ff;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>✨ Boutique Girly ✨</header>
+
+  <section class="products">
+    <div class="card">
+      <h2>same_thunder</h2>
+      <p class="price">0,1€</p>
+      <button class="btn">Acheter</button>
+    </div>
+    <div class="card">
+      <h2>el_nat</h2>
+      <p class="price">500€</p>
+      <button class="btn">Acheter</button>
+    </div>
+    <div class="card">
+      <h2>aaronvolt</h2>
+      <p class="price">1000€</p>
+      <button class="btn">Acheter</button>
+    </div>
+  </section>
+
+  <div class="popup" id="promoPopup">🎉 Promo spéciale : El_nat est en réduction de 50% ! 🎉</div>
+
+  <footer>© 2025 Boutique Girly - Tous droits réservés 💖</footer>
+
+  <script>
+    // Afficher le popup après 2 secondes
+    setTimeout(() => {
+      document.getElementById("promoPopup").style.display = "block";
+    }, 2000);
+  </script>
+
+</body>
+</html>
