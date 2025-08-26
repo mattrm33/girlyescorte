@@ -1,603 +1,194 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖 Girly Services Premium 💖</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 Girly Shop 💖</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(45deg, #ff69b4, #ff1493, #ffc0cb, #ffb6c1);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      background: rgba(255,20,147,0.9);
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff33ff;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav button {
+      background: #ff33aa;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff00ff;
+      transition: 0.3s;
+    }
+    nav button:hover {
+      background: #ff0099;
+      transform: scale(1.05);
+    }
+    section {
+      display: none;
+      padding: 30px;
+      animation: fadeIn 0.5s ease;
+    }
+    section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        body {
-            font-family: 'Comic Sans MS', cursive;
-            background: linear-gradient(45deg, #ff69b4, #ff1493, #ffc0cb, #ffb6c1);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    /* Produits */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.9);
+      border: 3px solid #ff69b4;
+      border-radius: 15px;
+      color: #ff1493;
+      text-align: center;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    .card:hover { transform: scale(1.05); }
+    .price { font-size: 1.5rem; margin: 10px 0; }
+    .btn {
+      background: linear-gradient(45deg,#ff69b4,#ff1493);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+    .btn:hover { background: #ff0099; }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* Panier */
+    #cart-list { list-style: none; padding: 0; }
+    #cart-list li { background: rgba(255,255,255,0.2); margin: 5px; padding: 10px; border-radius: 10px; }
 
-        .header {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 20, 147, 0.9);
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
-        }
-
-        .neon-title {
-            font-size: 3rem;
-            color: #fff;
-            text-shadow: 
-                0 0 5px #ff69b4,
-                0 0 10px #ff69b4,
-                0 0 15px #ff69b4,
-                0 0 20px #ff69b4,
-                0 0 30px #ff1493,
-                0 0 40px #ff1493;
-            animation: neonGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes neonGlow {
-            from {
-                text-shadow: 
-                    0 0 5px #ff69b4,
-                    0 0 10px #ff69b4,
-                    0 0 15px #ff69b4,
-                    0 0 20px #ff69b4,
-                    0 0 30px #ff1493,
-                    0 0 40px #ff1493;
-            }
-            to {
-                text-shadow: 
-                    0 0 2px #ff69b4,
-                    0 0 5px #ff69b4,
-                    0 0 8px #ff69b4,
-                    0 0 12px #ff69b4,
-                    0 0 18px #ff1493,
-                    0 0 25px #ff1493;
-            }
-        }
-
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            color: #ff69b4;
-            animation: floatUp 6s infinite linear;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .services-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding: 50px 20px;
-            gap: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            width: 350px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
-            border: 3px solid #ff69b4;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.6);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 105, 180, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        .service-card:hover::before {
-            animation: shimmer 1s ease-in-out;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .service-title {
-            font-size: 1.8rem;
-            color: #ff1493;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .service-categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
-            justify-content: center;
-        }
-
-        .category-tag {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .service-price {
-            font-size: 2rem;
-            color: #ff69b4;
-            text-align: center;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        .order-btn {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .order-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
-        }
-
-        .order-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Pop-up centré style pub */
-        .center-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, #ff1493, #ff69b4);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            z-index: 10000;
-            animation: popupBounce 0.5s ease-out;
-            max-width: 400px;
-            min-width: 300px;
-            border: 3px solid #ffd700;
-        }
-
-        @keyframes popupBounce {
-            0% {
-                transform: translate(-50%, -50%) scale(0.3);
-                opacity: 0;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-        }
-
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-        }
-
-        .close-popup-x {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #ff1493;
-            border: 2px solid white;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .close-popup-x:hover {
-            background: #dc143c;
-            transform: scale(1.1);
-        }
-
-        .popup-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .popup-content {
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-
-        .sparkles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .sparkle {
-            position: absolute;
-            font-size: 15px;
-            color: #ffd700;
-            animation: sparkleAnim 3s infinite;
-        }
-
-        @keyframes sparkleAnim {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
-        .customer-input {
-            margin: 15px 0;
-            padding: 10px;
-            border: 2px solid #ff69b4;
-            border-radius: 10px;
-            width: 100%;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .customer-input:focus {
-            outline: none;
-            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-        }
-
-        .promo-banner {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: linear-gradient(45deg, #ff1493, #ff69b4);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            animation: bounce 2s infinite;
-            z-index: 1000;
-            cursor: pointer;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        .glitter {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: #ffd700;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: glitterFall 3s linear infinite;
-        }
-
-        @keyframes glitterFall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .blinking-offer {
-            animation: blink 1s infinite;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-    </style>
+    /* Réduction */
+    .promo {
+      background: rgba(255, 20, 147, 0.9);
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.2rem;
+      box-shadow: 0 0 15px #ff00ff;
+      width: fit-content;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,20%,50%,80%,100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+  </style>
 </head>
 <body>
-    <div class="floating-hearts" id="hearts"></div>
 
-    <header class="header">
-        <h1 class="neon-title">✨ Girly Services Premium ✨</h1>
-        <p style="color: white; font-size: 1.2rem; margin-top: 10px;">Des services de qualité avec style ! 💖</p>
-    </header>
+<header>
+  <h1>✨ Girly Shop ✨</h1>
+  <nav>
+    <button onclick="showTab('home')">Accueil</button>
+    <button onclick="showTab('products')">Produits</button>
+    <button onclick="showTab('promo')">Réductions</button>
+    <button onclick="showTab('cart')">Panier 🛒</button>
+  </nav>
+</header>
 
-    <div class="services-container">
-        <div class="service-card">
-            <h2 class="service-title">⚡ Same_Thunder</h2>
-            <div class="service-categories">
-                <span class="category-tag">📷 Photos pieds</span>
-                <span class="category-tag">🏠 À domicile</span>
-                <span class="category-tag">⚡ Express</span>
-            </div>
-            <div class="service-price">0,10€</div>
-            <input type="text" class="customer-input" placeholder="Votre nom ✨" id="name1">
-            <button class="order-btn" onclick="orderService('Same_Thunder', '0,10€', 'name1')">
-                Commander maintenant ! 💕
-            </button>
-        </div>
+<section id="home" class="active">
+  <h2>Bienvenue 💖</h2>
+  <p>Découvrez nos services girly avec des réductions incroyables !</p>
+</section>
 
-        <div class="service-card">
-            <h2 class="service-title">🌟 El_Nat</h2>
-            <div class="service-categories">
-                <span class="category-tag">📸 Photos pieds</span>
-                <span class="category-tag">🏠 Services à domicile</span>
-                <span class="category-tag">💎 Premium</span>
-                <span class="category-tag">🔥 Populaire</span>
-            </div>
-            <div class="service-price">500€</div>
-            <input type="text" class="customer-input" placeholder="Votre nom ✨" id="name2">
-            <button class="order-btn" onclick="orderService('El_Nat', '500€', 'name2')">
-                Commander maintenant ! 💖
-            </button>
-        </div>
-
-        <div class="service-card">
-            <h2 class="service-title">⚡ AaronVolt</h2>
-            <div class="service-categories">
-                <span class="category-tag">📷 Photos pieds</span>
-                <span class="category-tag">🏠 À domicile</span>
-                <span class="category-tag">👑 VIP</span>
-                <span class="category-tag">✨ Exclusif</span>
-            </div>
-            <div class="service-price">1000€</div>
-            <input type="text" class="customer-input" placeholder="Votre nom ✨" id="name3">
-            <button class="order-btn" onclick="orderService('AaronVolt', '1000€', 'name3')">
-                Commander maintenant ! 💫
-            </button>
-        </div>
+<section id="products">
+  <h2>Nos Produits ✨</h2>
+  <div class="products">
+    <div class="card">
+      <h3>⚡ Same_Thunder</h3>
+      <p class="price">0,10€</p>
+      <button class="btn" onclick="addToCart('Same_Thunder',0.1)">Ajouter au panier</button>
     </div>
-
-    <div class="promo-banner" onclick="showCenterPopup('🎉 OFFRE SPÉCIALE ! 🎉', 'Profitez de nos réductions exceptionnelles ! Cliquez vite ! ⚡')">
-        🎉 OFFRE SPÉCIALE ! Cliquez ici ! 🎉
+    <div class="card">
+      <h3>🌟 El_Nat</h3>
+      <p class="price"><s>500€</s> <b>250€ (-50%)</b></p>
+      <button class="btn" onclick="addToCart('El_Nat',250)">Ajouter au panier</button>
     </div>
+    <div class="card">
+      <h3>⚡ AaronVolt</h3>
+      <p class="price">1000€</p>
+      <button class="btn" onclick="addToCart('AaronVolt',1000)">Ajouter au panier</button>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Messages de popup aléatoires
-        const randomPopups = [
-            {
-                title: '🔥 RÉDUCTION FLASH ! 🔥',
-                content: 'El_Nat à -50% ! <br><span class="blinking-offer">OFFRE LIMITÉE !</span><br>Plus que 3 places disponibles ! 💖'
-            },
-            {
-                title: '⚡ ALERTE PROMO ⚡',
-                content: 'Félicitations ! Vous avez été sélectionné(e) pour une offre exclusive ! <br>🎁 Code promo : GIRLY50 🎁'
-            },
-            {
-                title: '💸 DERNIÈRE CHANCE 💸',
-                content: '<span class="blinking-offer">VENTE FLASH</span><br>Same_Thunder GRATUIT pour les 5 prochaines commandes ! ⏰'
-            },
-            {
-                title: '👑 DEVENIR VIP 👑',
-                content: 'Accès VIP disponible ! <br>Débloquez tous les services premium ! ✨<br><span class="blinking-offer">CLIQUEZ ICI !</span>'
-            },
-            {
-                title: '🚨 STOCK LIMITÉ 🚨',
-                content: 'AaronVolt presque en rupture de stock ! <br>Plus que 2 créneaux disponibles aujourd\'hui ! ⚡'
-            },
-            {
-                title: '💎 OFFRE DIAMANT 💎',
-                content: 'Pack spécial : 3 services pour le prix de 2 ! <br><span class="blinking-offer">AUJOURD\'HUI SEULEMENT !</span> 💖'
-            }
-        ];
+<section id="promo">
+  <h2>🎉 Réductions en cours 🎉</h2>
+  <div class="promo">🔥 El_Nat est à -50% : seulement 250€ au lieu de 500€ ! 🔥</div>
+  <div class="promo">⚡ Livraison express gratuite sur Same_Thunder !</div>
+</section>
 
-        // Créer des cœurs flottants
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '💖';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            heart.style.opacity = Math.random();
-            document.getElementById('hearts').appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 6000);
-        }
+<section id="cart">
+  <h2>🛒 Votre Panier</h2>
+  <ul id="cart-list"></ul>
+  <p id="cart-total">Total : 0€</p>
+</section>
 
-        // Créer des paillettes
-        function createGlitter() {
-            const glitter = document.createElement('div');
-            glitter.className = 'glitter';
-            glitter.style.left = Math.random() * 100 + 'vw';
-            glitter.style.top = '-5px';
-            document.body.appendChild(glitter);
-            
-            setTimeout(() => {
-                glitter.remove();
-            }, 3000);
-        }
+<script>
+  let cart = [];
 
-        // Fonction pour commander un service
-        function orderService(service, price, nameInputId) {
-            const customerName = document.getElementById(nameInputId).value.trim();
-            if (!customerName) {
-                showCenterPopup('💕 Attention ! 💕', 'Veuillez entrer votre nom pour commander ! ✨');
-                return;
-            }
-            
-            const neonName = `✨ ${customerName.toUpperCase()} ✨`;
-            showCenterPopup('🎉 Commande confirmée ! 🎉', `${neonName} a commandé ${service} pour ${price} ! 💖<br><br>Préparation en cours... ⚡`);
-            
-            // Effets visuels
-            for(let i = 0; i < 10; i++) {
-                setTimeout(() => createGlitter(), i * 100);
-            }
-        }
+  function showTab(id) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
 
-        // Afficher popup centrée avec overlay
-        function showCenterPopup(title, content) {
-            // Créer l'overlay
-            const overlay = document.createElement('div');
-            overlay.className = 'popup-overlay';
-            
-            // Créer la popup
-            const popup = document.createElement('div');
-            popup.className = 'center-popup';
-            
-            // Ajouter les sparkles
-            const sparkles = document.createElement('div');
-            sparkles.className = 'sparkles';
-            for(let i = 0; i < 8; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.innerHTML = '✨';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 3 + 's';
-                sparkles.appendChild(sparkle);
-            }
-            popup.appendChild(sparkles);
-            
-            popup.innerHTML += `
-                <button class="close-popup-x" onclick="closeAllPopups()">×</button>
-                <div class="popup-title">${title}</div>
-                <div class="popup-content">${content}</div>
-            `;
-            
-            // Fermer la popup en cliquant sur l'overlay
-            overlay.onclick = closeAllPopups;
-            
-            document.body.appendChild(overlay);
-            document.body.appendChild(popup);
-            
-            // Auto-fermeture après 8 secondes
-            setTimeout(() => {
-                closeAllPopups();
-            }, 8000);
-        }
+  function addToCart(product, price) {
+    cart.push({ product, price });
+    updateCart();
+    alert(product + " ajouté au panier !");
+  }
 
-        // Fermer toutes les popups
-        function closeAllPopups() {
-            const overlays = document.querySelectorAll('.popup-overlay');
-            const popups = document.querySelectorAll('.center-popup');
-            
-            overlays.forEach(overlay => overlay.remove());
-            popups.forEach(popup => popup.remove());
-        }
+  function updateCart() {
+    const list = document.getElementById("cart-list");
+    list.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item.product + " - " + item.price.toFixed(2) + "€";
+      list.appendChild(li);
+      total += item.price;
+    });
+    document.getElementById("cart-total").textContent = "Total : " + total.toFixed(2) + "€";
+  }
+</script>
 
-        // Popup aléatoire comme les pubs
-        function showRandomPopup() {
-            const randomPopup = randomPopups[Math.floor(Math.random() * randomPopups.length)];
-            showCenterPopup(randomPopup.title, randomPopup.content);
-        }
-
-        // Intervalles pour les effets
-        setInterval(createHeart, 1000);
-        setInterval(createGlitter, 1500);
-
-        // Popup aléatoires à intervalles irréguliers (comme les vraies pubs chiantes)
-        function scheduleRandomPopup() {
-            const delay = Math.random() * 15000 + 5000; // Entre 5 et 20 secondes
-            setTimeout(() => {
-                showRandomPopup();
-                scheduleRandomPopup(); // Programmer la suivante
-            }, delay);
-        }
-
-        // Démarrer les popups aléatoires
-        setTimeout(() => {
-            scheduleRandomPopup();
-        }, 3000);
-
-        // Popup de bienvenue
-        setTimeout(() => {
-            showCenterPopup('💖 Bienvenue ! 💖', 'Bienvenue sur Girly Services ! ✨<br>Découvrez nos offres exceptionnelles !<br><span class="blinking-offer">PROMOTION EN COURS !</span>');
-        }, 2000);
-
-        // Effets au clic
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('order-btn')) {
-                for(let i = 0; i < 5; i++) {
-                    setTimeout(() => createGlitter(), i * 200);
-                }
-            }
-        });
-
-        // Popup spéciale après 10 secondes d'inactivité
-        let inactivityTimer;
-        function resetInactivityTimer() {
-            clearTimeout(inactivityTimer);
-            inactivityTimer = setTimeout(() => {
-                showCenterPopup('😴 Toujours là ? 😴', 'Ne ratez pas nos offres limitées ! <br><span class="blinking-offer">ACHETEZ MAINTENANT !</span> 💖');
-            }, 10000);
-        }
-
-        // Réinitialiser le timer d'inactivité sur n'importe quelle action
-        document.addEventListener('mousemove', resetInactivityTimer);
-        document.addEventListener('click', resetInactivityTimer);
-        document.addEventListener('keypress', resetInactivityTimer);
-
-        resetInactivityTimer();
-    </script>
 </body>
 </html>
