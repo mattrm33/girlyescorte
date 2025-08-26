@@ -6,13 +6,13 @@
     <title>💖 Girly Premium Service 💖</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
+ 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+ 
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500);
@@ -21,13 +21,13 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-
+ 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+ 
         .neon-text {
             color: #ff1493;
             text-shadow: 
@@ -37,12 +37,12 @@
                 0 0 20px #ff1493;
             animation: neonFlicker 2s infinite alternate;
         }
-
+ 
         @keyframes neonFlicker {
             0% { text-shadow: 0 0 5px #ff1493, 0 0 10px #ff1493, 0 0 15px #ff1493; }
             100% { text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493; }
         }
-
+ 
         .header {
             text-align: center;
             padding: 40px 20px;
@@ -50,36 +50,36 @@
             backdrop-filter: blur(10px);
             border-bottom: 2px solid #ff69b4;
         }
-
+ 
         .header h1 {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 20px;
         }
-
+ 
         .sparkle {
             display: inline-block;
             animation: sparkle 1.5s infinite;
         }
-
+ 
         @keyframes sparkle {
             0%, 100% { transform: scale(1) rotate(0deg); }
             50% { transform: scale(1.2) rotate(180deg); }
         }
-
+ 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-
+ 
         .person-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 50px;
         }
-
+ 
         .person-card {
             background: linear-gradient(145deg, #ff69b4, #ff1493);
             border-radius: 20px;
@@ -91,12 +91,12 @@
             position: relative;
             overflow: hidden;
         }
-
+ 
         .person-card:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 25px 50px rgba(255, 20, 147, 0.5);
         }
-
+ 
         .person-card::before {
             content: '';
             position: absolute;
@@ -108,30 +108,30 @@
             transform: rotate(45deg);
             transition: all 0.5s;
         }
-
+ 
         .person-card:hover::before {
             animation: shine 0.5s ease-in-out;
         }
-
+ 
         @keyframes shine {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
-
+ 
         .person-card h3 {
             color: white;
             font-size: 2rem;
             margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
+ 
         .person-card .price {
             font-size: 1.5rem;
             font-weight: bold;
             color: #ffff00;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
-
+ 
         .services-modal {
             display: none;
             position: fixed;
@@ -143,7 +143,7 @@
             z-index: 1000;
             backdrop-filter: blur(5px);
         }
-
+ 
         .modal-content {
             position: absolute;
             top: 50%;
@@ -157,7 +157,7 @@
             max-height: 80%;
             overflow-y: auto;
         }
-
+ 
         .close-btn {
             position: absolute;
             top: 15px;
@@ -174,12 +174,12 @@
             justify-content: center;
             transition: all 0.3s;
         }
-
+ 
         .close-btn:hover {
             background: rgba(255,255,255,0.3);
             transform: rotate(90deg);
         }
-
+ 
         .service-item {
             background: rgba(255, 255, 255, 0.2);
             margin: 15px 0;
@@ -187,29 +187,29 @@
             border-radius: 15px;
             backdrop-filter: blur(10px);
         }
-
+ 
         .service-item h4 {
             color: white;
             margin-bottom: 10px;
             font-size: 1.3rem;
         }
-
+ 
         .service-item p {
             color: #ffe4e1;
             margin-bottom: 15px;
         }
-
+ 
         .finition-option {
             margin: 10px 0;
             padding: 10px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
         }
-
+ 
         .finition-checkbox {
             margin-right: 10px;
         }
-
+ 
         .add-to-cart {
             background: linear-gradient(45deg, #ffd700, #ffb347);
             color: #333;
@@ -221,12 +221,12 @@
             transition: all 0.3s;
             margin-top: 10px;
         }
-
+ 
         .add-to-cart:hover {
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
         }
-
+ 
         .popup {
             position: fixed;
             top: 50%;
@@ -241,27 +241,27 @@
             animation: popupBounce 0.5s ease;
             border: 3px solid #ffd700;
         }
-
+ 
         @keyframes popupBounce {
             0% { transform: translate(-50%, -50%) scale(0.5); }
             50% { transform: translate(-50%, -50%) scale(1.1); }
             100% { transform: translate(-50%, -50%) scale(1); }
         }
-
+ 
         .popup h2 {
             color: #ffd700;
             margin-bottom: 15px;
             text-align: center;
             font-size: 1.8rem;
         }
-
+ 
         .popup p {
             color: white;
             text-align: center;
             margin-bottom: 20px;
             font-size: 1.2rem;
         }
-
+ 
         .cart-container {
             position: fixed;
             top: 20px;
@@ -273,14 +273,14 @@
             z-index: 500;
             min-width: 200px;
         }
-
+ 
         .cart-header {
             color: white;
             font-weight: bold;
             margin-bottom: 10px;
             text-align: center;
         }
-
+ 
         .cart-item {
             background: rgba(255, 255, 255, 0.2);
             margin: 5px 0;
@@ -289,7 +289,7 @@
             color: white;
             font-size: 0.9rem;
         }
-
+ 
         .cart-total {
             border-top: 2px solid white;
             margin-top: 10px;
@@ -298,7 +298,7 @@
             font-weight: bold;
             text-align: center;
         }
-
+ 
         .checkout-btn {
             width: 100%;
             background: linear-gradient(45deg, #ffd700, #ffb347);
@@ -311,11 +311,11 @@
             margin-top: 10px;
             transition: all 0.3s;
         }
-
+ 
         .checkout-btn:hover {
             transform: scale(1.05);
         }
-
+ 
         .floating-elements {
             position: fixed;
             top: 0;
@@ -325,19 +325,19 @@
             pointer-events: none;
             z-index: 1;
         }
-
+ 
         .floating-heart {
             position: absolute;
             color: #ff69b4;
             font-size: 2rem;
             animation: float 3s infinite ease-in-out;
         }
-
+ 
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
         }
-
+ 
         .quality-badge {
             position: absolute;
             top: 10px;
@@ -350,7 +350,7 @@
             font-size: 0.8rem;
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
-
+ 
         input[type="text"] {
             width: 100%;
             padding: 10px;
@@ -360,10 +360,52 @@
             background: rgba(255, 255, 255, 0.9);
             font-family: 'Poppins', sans-serif;
         }
-
-        .premium-service {
-            border: 2px solid #ffd700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+ 
+        .web-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 3000;
+            display: none;
+            animation: slideDown 0.5s ease;
+            max-width: 400px;
+            text-align: left;
+        }
+ 
+        .web-notification .site-name {
+            font-size: 0.8rem;
+            color: #a0aec0;
+            margin-bottom: 5px;
+        }
+ 
+        .web-notification .notification-content {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+ 
+        .web-notification .close-notification {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #a0aec0;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+        }
+ 
+        @keyframes slideDown {
+            0% { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            100% { transform: translateX(-50%) translateY(0); opacity: 1; }
         }
     </style>
 </head>
@@ -374,7 +416,7 @@
         <div class="floating-heart" style="top: 30%; right: 30%; animation-delay: -2s;">💕</div>
         <div class="floating-heart" style="bottom: 20%; left: 20%; animation-delay: -0.5s;">🌟</div>
     </div>
-
+ 
     <div class="header">
         <h1 class="neon-text">
             <span class="sparkle">💖</span> 
@@ -383,7 +425,7 @@
         </h1>
         <p style="color: white; font-size: 1.3rem;">Services de Luxe Girly ✨ Qualité Premium Garantie</p>
     </div>
-
+ 
     <div class="cart-container">
         <div class="cart-header">🛒 Mon Panier VIP</div>
         <div id="cart-items"></div>
@@ -395,7 +437,7 @@
         </div>
         <button class="checkout-btn" onclick="checkout()">💳 Commander VIP</button>
     </div>
-
+ 
     <div class="container">
         <div class="person-grid">
             <div class="person-card" onclick="openServices('same_thunder')">
@@ -404,14 +446,14 @@
                 <p class="price">À partir de 0,1€</p>
                 <p style="color: white; margin-top: 10px;">Services Basic & Premium</p>
             </div>
-            
+ 
             <div class="person-card premium-service" onclick="openServices('el_nat')">
                 <div class="quality-badge">👑 LUXE</div>
                 <h3>El_Nat</h3>
                 <p class="price">À partir de 500€</p>
                 <p style="color: white; margin-top: 10px;">Services Haut de Gamme</p>
             </div>
-            
+ 
             <div class="person-card premium-service" onclick="openServices('aaronvolt')">
                 <div class="quality-badge">💎 ULTRA LUXE</div>
                 <h3>AaronVolt</h3>
@@ -420,7 +462,7 @@
             </div>
         </div>
     </div>
-
+ 
     <!-- Modal Services -->
     <div id="servicesModal" class="services-modal">
         <div class="modal-content">
@@ -429,7 +471,7 @@
             <div id="servicesList"></div>
         </div>
     </div>
-
+ 
     <!-- Popups -->
     <div id="popup1" class="popup">
         <span class="close-btn" onclick="closePopup('popup1')">&times;</span>
@@ -437,73 +479,75 @@
         <p>El_Nat en REDUCTION de 50%!</p>
         <p style="color: #ffd700;">Seulement aujourd'hui!</p>
     </div>
-
+ 
     <div id="popup2" class="popup">
         <span class="close-btn" onclick="closePopup('popup2')">&times;</span>
         <h2>💖 ALERTE BEAUTÉ 💖</h2>
         <p>Nouveau service ultra premium disponible!</p>
         <p style="color: #ffd700;">Réservez maintenant!</p>
     </div>
-
+ 
     <div id="popup3" class="popup">
         <span class="close-btn" onclick="closePopup('popup3')">&times;</span>
         <h2>⚡ DERNIÈRE CHANCE ⚡</h2>
         <p>Stock limité sur nos services VIP!</p>
         <p style="color: #ffd700;">Plus que 2 places!</p>
     </div>
-
+ 
     <script>
         let cart = [];
         let cartTotal = 0;
-        
+ 
         const services = {
             same_thunder: [
                 {
-                    name: "Photo Pied Basic",
+                    name: "Photo de Pied Basic",
                     price: 0.1,
-                    description: "Séance photo pieds basique",
-                    category: "photo_pied"
+                    description: "Photo de pied avec retouches basiques",
+                    category: "photo_pied",
+                    hasElMordjen: true
                 },
                 {
-                    name: "Service à Domicile Express",
-                    price: 50,
-                    description: "Service rapide à domicile",
-                    category: "domicile"
-                },
-                {
-                    name: "Nail Art Simple",
+                    name: "Photo Cosplay Personnalisée",
                     price: 25,
-                    description: "Manucure avec nail art basique",
-                    category: "nail_art",
+                    description: "Photo en cosplay du personnage de votre choix",
+                    category: "cosplay",
+                    needsCosplayName: true
+                },
+                {
+                    name: "Danse Personnelle",
+                    price: 30,
+                    description: "Danse privée personnalisée selon vos goûts",
+                    category: "danse"
+                },
+                {
+                    name: "Massage Basic",
+                    price: 40,
+                    description: "Massage relaxant 30min",
+                    category: "massage",
                     hasFinition: true
                 }
             ],
             el_nat: [
                 {
-                    name: "Photo Pied Premium",
+                    name: "Photo de Pied Premium",
                     price: 500,
-                    description: "Séance photo pieds professionnelle avec retouches",
-                    category: "photo_pied"
+                    description: "Photo de pied haute qualité avec retouches pro",
+                    category: "photo_pied",
+                    hasElMordjen: true
                 },
                 {
-                    name: "Service à Domicile VIP",
-                    price: 800,
-                    description: "Service complet à domicile avec équipe",
-                    category: "domicile"
-                },
-                {
-                    name: "Nail Art Artistique",
-                    price: 150,
-                    description: "Nail art complexe avec designs personnalisés",
-                    category: "nail_art",
-                    hasFinition: true
-                },
-                {
-                    name: "Gâteau Personnalisé",
+                    name: "Photo Cosplay Premium",
                     price: 200,
-                    description: "Gâteau sur mesure avec décoration premium",
-                    category: "gateau",
-                    hasFinition: true
+                    description: "Photo cosplay avec costume professionnel et décor",
+                    category: "cosplay",
+                    needsCosplayName: true
+                },
+                {
+                    name: "Danse VIP",
+                    price: 300,
+                    description: "Danse privée VIP avec chorégraphie personnalisée",
+                    category: "danse"
                 },
                 {
                     name: "Massage Relaxant",
@@ -515,30 +559,30 @@
             ],
             aaronvolt: [
                 {
-                    name: "Photo Pied Ultra Luxe",
+                    name: "Photo de Pied Ultra Luxe",
                     price: 1000,
-                    description: "Séance photo exclusive avec studio privé",
-                    category: "photo_pied"
+                    description: "Photo de pied exclusive avec studio professionnel",
+                    category: "photo_pied",
+                    hasElMordjen: true
                 },
                 {
-                    name: "Service Domicile Royal",
-                    price: 1500,
-                    description: "Service ultra premium avec butler personnel",
-                    category: "domicile"
+                    name: "Photo Cosplay Ultra",
+                    price: 800,
+                    description: "Cosplay haut de gamme avec effets spéciaux",
+                    category: "cosplay",
+                    needsCosplayName: true
                 },
                 {
-                    name: "Nail Art Couture",
-                    price: 300,
-                    description: "Nail art haute couture avec cristaux Swarovski",
-                    category: "nail_art",
-                    hasFinition: true
+                    name: "Danse Exclusive",
+                    price: 1200,
+                    description: "Danse privée exclusive avec mise en scène cinéma",
+                    category: "danse"
                 },
                 {
-                    name: "Gâteau de Luxe",
-                    price: 500,
-                    description: "Gâteau avec ingrédients rares et or comestible",
-                    category: "gateau",
-                    hasFinition: true
+                    name: "1 Kill = -1 Vêtement CS",
+                    price: 2000,
+                    description: "Challenge Counter Strike: chaque kill retire un vêtement",
+                    category: "gaming"
                 },
                 {
                     name: "Massage Imperial",
@@ -549,20 +593,23 @@
                 }
             ]
         };
-
+ 
         function openServices(person) {
             const modal = document.getElementById('servicesModal');
             const title = document.getElementById('modalTitle');
             const servicesList = document.getElementById('servicesList');
-            
+ 
             title.textContent = person.replace('_', ' ').toUpperCase() + ' - Services';
-            
+ 
             servicesList.innerHTML = '';
             services[person].forEach(service => {
                 const serviceDiv = document.createElement('div');
                 serviceDiv.className = 'service-item';
-                
+ 
                 let finitionHtml = '';
+                let cosplayHtml = '';
+                let elMordjenHtml = '';
+ 
                 if (service.hasFinition) {
                     finitionHtml = `
                         <div class="finition-option">
@@ -573,59 +620,109 @@
                         </div>
                     `;
                 }
-                
+ 
+                if (service.needsCosplayName) {
+                    cosplayHtml = `
+                        <input type="text" placeholder="Nom du cosplay (ex: Naruto, Goku...)" id="cosplay_${service.name}" style="margin: 10px 0;">
+                    `;
+                }
+ 
+                if (service.hasElMordjen) {
+                    elMordjenHtml = `
+                        <div class="finition-option">
+                            <input type="checkbox" id="elmordjen_${service.name}" class="finition-checkbox">
+                            <label for="elmordjen_${service.name}" style="color: #ffd700;">
+                                🔥 El Mordjen (+10% = +${(service.price * 0.1).toFixed(2)}€)
+                            </label>
+                        </div>
+                    `;
+                }
+ 
                 serviceDiv.innerHTML = `
                     <h4>${service.name}</h4>
                     <p>${service.description}</p>
                     <p style="color: #ffd700; font-size: 1.2rem; font-weight: bold;">Prix: ${service.price}€</p>
                     <input type="text" placeholder="Votre nom" id="name_${service.name}" style="margin: 10px 0;">
+                    ${cosplayHtml}
+                    ${elMordjenHtml}
                     ${finitionHtml}
-                    <button class="add-to-cart" onclick="addToCart('${service.name}', ${service.price}, '${person}', ${service.hasFinition})">
+                    <button class="add-to-cart" onclick="addToCart('${service.name}', ${service.price}, '${person}', ${service.hasFinition}, ${service.hasElMordjen}, ${service.needsCosplayName})">
                         🛒 Ajouter au Panier VIP
                     </button>
                 `;
                 servicesList.appendChild(serviceDiv);
             });
-            
+ 
             modal.style.display = 'block';
         }
-
+ 
         function closeModal() {
             document.getElementById('servicesModal').style.display = 'none';
         }
-
-        function addToCart(serviceName, price, person, hasFinition) {
+ 
+        function addToCart(serviceName, price, person, hasFinition, hasElMordjen, needsCosplayName) {
             const nameInput = document.getElementById(`name_${serviceName}`);
             const customerName = nameInput.value.trim();
-            
+ 
             if (!customerName) {
-                alert('Veuillez entrer votre nom pour ce service premium!');
+                showWebNotification('❌ Erreur: Veuillez entrer votre nom pour ce service premium!');
                 return;
             }
-            
+ 
+            let cosplayName = '';
+            if (needsCosplayName) {
+                const cosplayInput = document.getElementById(`cosplay_${serviceName}`);
+                cosplayName = cosplayInput ? cosplayInput.value.trim() : '';
+                if (!cosplayName) {
+                    showWebNotification('❌ Erreur: Veuillez préciser le nom du cosplay!');
+                    return;
+                }
+            }
+ 
             let finalPrice = price;
-            let finitionText = '';
-            
+            let extraText = '';
+ 
             if (hasFinition) {
                 const finitionCheckbox = document.getElementById(`finition_${serviceName}`);
                 if (finitionCheckbox && finitionCheckbox.checked) {
-                    finalPrice = price * 1.1;
-                    finitionText = ' + Finition Premium';
+                    finalPrice = finalPrice * 1.1;
+                    extraText += ' + Finition Premium';
                 }
             }
-            
+ 
+            if (hasElMordjen) {
+                const elMordjenCheckbox = document.getElementById(`elmordjen_${serviceName}`);
+                if (elMordjenCheckbox && elMordjenCheckbox.checked) {
+                    finalPrice = finalPrice * 1.1;
+                    extraText += ' + El Mordjen';
+                }
+            }
+ 
             const item = {
                 service: serviceName,
                 customer: customerName,
                 person: person,
                 price: finalPrice,
-                finition: finitionText
+                extras: extraText,
+                cosplay: cosplayName
             };
-            
+ 
             cart.push(item);
             updateCartDisplay();
             nameInput.value = '';
-            
+ 
+            if (needsCosplayName) {
+                document.getElementById(`cosplay_${serviceName}`).value = '';
+            }
+ 
+            // Notification d'ajout au panier
+            let notificationText = `✅ ${serviceName}${extraText} ajouté au panier pour ${customerName}!`;
+            if (cosplayName) {
+                notificationText += ` Cosplay: ${cosplayName}.`;
+            }
+            notificationText += ` Prix: ${finalPrice.toFixed(2)}€`;
+            showWebNotification(notificationText);
+ 
             // Animation d'ajout
             const button = event.target;
             button.style.background = 'linear-gradient(45deg, #00ff00, #90EE90)';
@@ -635,75 +732,116 @@
                 button.textContent = '🛒 Ajouter au Panier VIP';
             }, 1000);
         }
-
+ 
         function updateCartDisplay() {
             const cartItems = document.getElementById('cart-items');
             const subtotalEl = document.getElementById('subtotal');
             const totalEl = document.getElementById('total');
-            
+ 
             if (cart.length === 0) {
                 cartItems.innerHTML = '<div style="color: white; text-align: center;">Panier vide</div>';
                 subtotalEl.textContent = '0€';
                 totalEl.textContent = '134€';
                 return;
             }
-            
+ 
             cartItems.innerHTML = '';
             let subtotal = 0;
-            
+ 
             cart.forEach((item, index) => {
                 subtotal += item.price;
                 const cartItem = document.createElement('div');
                 cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
-                    <div style="font-size: 0.8rem;">${item.service}${item.finition}</div>
-                    <div style="font-size: 0.7rem; opacity: 0.8;">${item.customer} - ${item.person}</div>
+ 
+                let displayText = `
+                    <div style="font-size: 0.8rem;">${item.service}${item.extras}</div>
+                    <div style="font-size: 0.7rem; opacity: 0.8;">${item.customer} - ${item.person}`;
+ 
+                if (item.cosplay) {
+                    displayText += ` (${item.cosplay})`;
+                }
+ 
+                displayText += `</div>
                     <div style="font-weight: bold; color: #ffd700;">${item.price.toFixed(2)}€</div>
                     <button onclick="removeFromCart(${index})" style="background: #ff4757; color: white; border: none; border-radius: 3px; padding: 2px 6px; font-size: 0.7rem; cursor: pointer; margin-top: 3px;">❌</button>
                 `;
+ 
+                cartItem.innerHTML = displayText;
                 cartItems.appendChild(cartItem);
             });
-            
+ 
             const shipping = 89;
             const taxes = 45;
             const total = subtotal + shipping + taxes;
-            
+ 
             subtotalEl.textContent = subtotal.toFixed(2) + '€';
             totalEl.textContent = total.toFixed(2) + '€';
         }
-
+ 
         function removeFromCart(index) {
             cart.splice(index, 1);
             updateCartDisplay();
         }
-
+ 
         function checkout() {
             if (cart.length === 0) {
-                alert('Votre panier VIP est vide! 💖');
+                showWebNotification('Votre panier VIP est vide! 💖 Ajoutez des services premium pour continuer!');
                 return;
             }
-            
-            alert('🎉 Commande confirmée! Nos services premium seront livrés sous 24h avec notre équipe VIP! Total: ' + document.getElementById('total').textContent);
+ 
+            const total = document.getElementById('total').textContent;
+            showWebNotification('🎉 Commande confirmée! Nos services premium seront livrés sous 24h avec notre équipe VIP! Total: ' + total);
             cart = [];
             updateCartDisplay();
         }
-
+ 
+        function showWebNotification(message) {
+            const notification = document.getElementById('webNotification');
+            const notificationText = document.getElementById('notificationText');
+ 
+            notificationText.textContent = message;
+            notification.style.display = 'block';
+ 
+            // Auto-fermeture après 8 secondes
+            setTimeout(() => {
+                closeWebNotification();
+            }, 8000);
+        }
+ 
+        function closeWebNotification() {
+            document.getElementById('webNotification').style.display = 'none';
+        }
+ 
         function showRandomPopup() {
             const popups = ['popup1', 'popup2', 'popup3'];
             const randomPopup = popups[Math.floor(Math.random() * popups.length)];
             document.getElementById(randomPopup).style.display = 'block';
         }
-
+ 
         function closePopup(popupId) {
             document.getElementById(popupId).style.display = 'none';
         }
-
-        // Afficher des popups aléatoires
-        setInterval(showRandomPopup, Math.random() * 15000 + 10000);
-
-        // Première popup après 3 secondes
-        setTimeout(showRandomPopup, 3000);
-
+ 
+        // Afficher des popups aléatoires avec notifications web
+        setInterval(() => {
+            const messages = [
+                "🔥 OFFRE FLASH! El_Nat en REDUCTION de 50%! Seulement aujourd'hui!",
+                "💖 ALERTE BEAUTÉ! Photos de pied ultra premium maintenant disponibles!",
+                "⚡ DERNIÈRE CHANCE! Stock limité sur nos services VIP! Plus que 2 places!",
+                "🎀 NOUVEAU! Service cosplay avec costumes professionnels!",
+                "💎 VIP ALERT! AaronVolt propose le challenge 1Kill = -1 Vêtement CS!",
+                "🌟 PROMOTION! -30% sur tous les services de danse personnelle!",
+                "🔥 El Mordjen disponible! +10% pour une expérience unique!"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            showWebNotification(randomMessage);
+        }, Math.random() * 20000 + 15000);
+ 
+        // Première notification après 5 secondes
+        setTimeout(() => {
+            showWebNotification("🎉 Bienvenue sur Girly Premium Service! Services de qualité supérieure disponibles 24h/24!");
+        }, 5000);
+ 
         // Fermer les modales en cliquant à l'extérieur
         window.onclick = function(event) {
             const modal = document.getElementById('servicesModal');
@@ -711,223 +849,9 @@
                 closeModal();
             }
         }
-
+ 
         // Initialiser l'affichage du panier
         updateCartDisplay();
-    <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>VIP Chat & Amis 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff1cac, #ff66c4, #ffb3e6);
-      color: white;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .chat-container {
-      width: 900px;
-      height: 600px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      box-shadow: 0 0 20px #ff1cac, 0 0 40px #ff66c4;
-      display: flex;
-      overflow: hidden;
-    }
-
-    /* Liste d’amis */
-    .friends {
-      width: 250px;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      border-right: 2px solid #ff66c4;
-    }
-
-    .friends h3 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 18px;
-      color: #ffb3e6;
-      text-shadow: 0 0 10px #ff66c4;
-    }
-
-    .friend {
-      background: rgba(255,255,255,0.1);
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .friend:hover {
-      background: rgba(255,255,255,0.2);
-      box-shadow: 0 0 10px #ff66c4;
-    }
-
-    /* Zone de chat */
-    .chat-box {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .chat-header {
-      padding: 15px;
-      background: rgba(0,0,0,0.5);
-      font-weight: bold;
-      font-size: 18px;
-      border-bottom: 2px solid #ff66c4;
-    }
-
-    .messages {
-      flex: 1;
-      padding: 15px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .message {
-      max-width: 60%;
-      padding: 10px 15px;
-      border-radius: 15px;
-      word-wrap: break-word;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .from-me {
-      background: #ff66c4;
-      align-self: flex-end;
-      box-shadow: 0 0 10px #ff1cac;
-    }
-
-    .from-them {
-      background: #ffb3e6;
-      align-self: flex-start;
-      box-shadow: 0 0 10px #ff66c4;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    .chat-input {
-      display: flex;
-      border-top: 2px solid #ff66c4;
-      background: rgba(0,0,0,0.4);
-    }
-
-    .chat-input input {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: white;
-      font-size: 16px;
-    }
-
-    .chat-input button {
-      background: #ff1cac;
-      border: none;
-      padding: 12px 20px;
-      cursor: pointer;
-      color: white;
-      font-weight: bold;
-      transition: 0.3s;
-      border-radius: 0 0 20px 0;
-    }
-
-    .chat-input button:hover {
-      background: #ff66c4;
-      box-shadow: 0 0 15px #ffb3e6;
-    }
-  </style>
-</head>
-<body>
-  <div class="chat-container">
-    <!-- Liste d’amis -->
-    <div class="friends">
-      <h3>👭 Amis</h3>
-      <input type="text" id="username" placeholder="Votre pseudo" style="padding:8px; border:none; border-radius:10px; margin-bottom:10px;">
-      <button onclick="registerUser()" style="padding:8px; background:#ff1cac; border:none; border-radius:10px; margin-bottom:10px; color:white; cursor:pointer;">Se connecter</button>
-      <div id="friendsList"></div>
-    </div>
-
-    <!-- Chat -->
-    <div class="chat-box">
-      <div class="chat-header" id="chatWith">💬 Pas encore de chat</div>
-      <div class="messages" id="messages"></div>
-      <div class="chat-input">
-        <input type="text" id="msgInput" placeholder="Votre message..." />
-        <button onclick="sendMessage()">Envoyer</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-    let currentUser = null;
-    let chattingWith = null;
-
-    function registerUser() {
-      const username = document.getElementById("username").value.trim();
-      if (!username) return alert("Entrez un pseudo !");
-      currentUser = username;
-      socket.emit("register", username);
-      alert("Connecté en tant que " + username);
-    }
-
-    function sendMessage() {
-      const msg = document.getElementById("msgInput").value;
-      if (!chattingWith || !msg) return;
-      socket.emit("chatMessage", { from: currentUser, to: chattingWith, message: msg });
-      addMessage("Vous", msg, true);
-      document.getElementById("msgInput").value = "";
-    }
-
-    function addMessage(from, msg, isMe = false) {
-      const messages = document.getElementById("messages");
-      const div = document.createElement("div");
-      div.className = "message " + (isMe ? "from-me" : "from-them");
-      div.innerHTML = `<b>${from}:</b> ${msg}`;
-      messages.appendChild(div);
-      messages.scrollTop = messages.scrollHeight;
-    }
-
-    socket.on("chatMessage", ({ from, message }) => {
-      chattingWith = from;
-      document.getElementById("chatWith").innerText = "Chat avec " + from;
-      addMessage(from, message, false);
-    });
-
-    socket.on("friendAccepted", ({ friend }) => {
-      const list = document.getElementById("friendsList");
-      const btn = document.createElement("div");
-      btn.className = "friend";
-      btn.innerHTML = `✅ ${friend}`;
-      btn.onclick = () => startChat(friend);
-      list.appendChild(btn);
-    });
-
-    function startChat(friend) {
-      chattingWith = friend;
-      document.getElementById("chatWith").innerText = "Chat avec " + friend;
-      document.getElementById("messages").innerHTML = "";
-    }
-  </script>
+    </script>
 </body>
 </html>
