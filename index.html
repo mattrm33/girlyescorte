@@ -715,5 +715,88 @@
         // Initialiser l'affichage du panier
         updateCartDisplay();
     </script>
+    <!-- Section Chat -->
+<div style="position: fixed; bottom: 0; right: 0; width: 300px; background: white; border: 2px solid pink; border-radius: 10px 10px 0 0; padding: 10px;">
+    <h3>💬 Chat VIP</h3>
+    <input type="text" id="username" placeholder="Votre pseudo" />
+    <button onclick="registerUser()">Se connecter</button>
+
+    <div id="friends"></div>
+
+    <div id="chatBox" style="display:none; margin-top: 10px;">
+        <h4 id="chatWith"></h4>
+        <div id="messages" style="height:150px; overflow-y:auto; border:1px solid #ccc; margin-bottom:10px; padding:5px;"></div>
+        <input type="text" id="msgInput" placeholder="Votre message" />
+        <button onclick="sendMessage()">Envoyer</button>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    let currentUser = null;
+    let chattingWith = null;
+
+    function registerUser() {
+        const username = document.getElementById("username").value.trim();
+        if (!username) return alert("Entrez un pseudo !");
+        currentUser = username;
+        socket.emit("register", username);
+        alert("Connecté en tant que " + username);
+    }
+
+    // Envoi d’un message
+    function sendMessage() {
+        const msg = document.getElementById("msgInput").value;
+        if (!chattingWith || !msg) return;
+        socket.emit("chatMessage", { from: currentUser, to: chattingWith, message: msg });
+        addMessage(currentUser + " (vous)", msg);
+        document.getElementById("msgInput").value = "";
+    }
+
+    // Affiche un message dans le chat
+    function addMessage(from, msg) {
+        const messages = document.getElementById("messages");
+        const div = document.createElement("div");
+        div.innerHTML = `<b>${from}:</b> ${msg}`;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    // Réception d’un message
+    socket.on("chatMessage", ({ from, message }) => {
+        chattingWith = from;
+        document.getElementById("chatBox").style.display = "block";
+        document.getElementById("chatWith").innerText = "Chat avec " + from;
+        addMessage(from, message);
+    });
+
+    // Réception d’une demande d’ami
+    socket.on("friendRequest", ({ from }) => {
+        const friendsDiv = document.getElementById("friends");
+        const btn = document.createElement("button");
+        btn.innerText = `Accepter ${from}`;
+        btn.onclick = () => {
+            socket.emit("acceptFriend", { from, to: currentUser });
+            btn.remove();
+        };
+        friendsDiv.appendChild(btn);
+    });
+
+    // Confirmation d’ami ajouté
+    socket.on("friendAccepted", ({ friend }) => {
+        const friendsDiv = document.getElementById("friends");
+        const div = document.createElement("div");
+        div.innerHTML = `✅ Ami : ${friend} <button onclick="startChat('${friend}')">Chat</button>`;
+        friendsDiv.appendChild(div);
+    });
+
+    // Commencer un chat avec un ami
+    function startChat(friend) {
+        chattingWith = friend;
+        document.getElementById("chatBox").style.display = "block";
+        document.getElementById("chatWith").innerText = "Chat avec " + friend;
+    }
+</script>
 </body>
 </html>
