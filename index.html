@@ -2,102 +2,114 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💋 Escort Premium 💋</title>
+  <title>Mini Réseau Social</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff69b4, #ff1493, #ffd700);
-      background-size: 400% 400%;
-      animation: bgShift 8s infinite alternate;
-      margin: 0;
-      padding: 0;
-    }
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    .header {
-      text-align: center;
-      padding: 40px 20px;
-      color: white;
-    }
-    .header h1 {
-      font-size: 3rem;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      padding: 40px;
-    }
-    .escort-card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
-    .escort-card:hover {
-      transform: scale(1.05);
-    }
-    .escort-card h2 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-    .escort-card p {
-      margin: 5px 0;
-    }
-    .price {
-      font-size: 1.4rem;
-      color: #ffd700;
-      font-weight: bold;
-    }
-    .btn {
-      margin-top: 15px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      background: linear-gradient(45deg, #ffd700, #ffb347);
-      color: #333;
-    }
-    .btn:hover {
-      background: linear-gradient(45deg, #ffb347, #ffd700);
-    }
+    body { font-family: Arial; background: #f2f2f2; margin:0; padding:20px; }
+    .container { max-width:600px; margin:auto; background:white; padding:20px; border-radius:10px; }
+    .hidden { display:none; }
+    .chat { border:1px solid #ccc; height:200px; overflow-y:scroll; padding:10px; margin-bottom:10px; }
+    .message { margin:5px 0; }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>💋 Escort Premium 💋</h1>
-    <p>Choisissez votre expérience VIP avec nos modèles exclusifs</p>
-  </div>
-  
   <div class="container">
-    <div class="escort-card">
-      <h2>Same_Thunde</h2>
-      <p class="price">À partir de 200€</p>
-      <p>Services Basic & Premium</p>
-      <button class="btn">Réserver</button>
+    <h1>Mini Réseau Social</h1>
+
+    <div id="auth">
+      <h2>Inscription</h2>
+      <input id="signupPseudo" placeholder="Pseudo"><br>
+      <input id="signupEmail" placeholder="Email"><br>
+      <input id="signupPass" type="password" placeholder="Mot de passe"><br>
+      <button onclick="signup()">S'inscrire</button>
+
+      <h2>Connexion</h2>
+      <input id="loginEmail" placeholder="Email"><br>
+      <input id="loginPass" type="password" placeholder="Mot de passe"><br>
+      <button onclick="login()">Se connecter</button>
     </div>
-    
-    <div class="escort-card">
-      <h2>AaronVolt</h2>
-      <p class="price">À partir de 1000€</p>
-      <p>Services Ultra Luxe VIP</p>
-      <button class="btn">Réserver</button>
-    </div>
-    
-    <div class="escort-card">
-      <h2>El_Nat</h2>
-      <p class="price">À partir de 500€</p>
-      <p>Expériences Haut de Gamme</p>
-      <button class="btn">Réserver</button>
+
+    <div id="app" class="hidden">
+      <h2 id="welcome"></h2>
+      <p>Votre code ami : <span id="friendCode"></span></p>
+      <input id="friendInput" placeholder="Code ami">
+      <button onclick="addFriend()">Ajouter un ami</button>
+      <p>Vos amis : <span id="friendsList"></span></p>
+
+      <h3>Chat</h3>
+      <div class="chat" id="chatBox"></div>
+      <input id="chatInput" placeholder="Message...">
+      <button onclick="sendMessage()">Envoyer</button>
     </div>
   </div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script>
+    const API = "http://localhost:3000";
+    let token = null;
+    let socket = null;
+
+    async function signup() {
+      let pseudo = document.getElementById("signupPseudo").value;
+      let email = document.getElementById("signupEmail").value;
+      let password = document.getElementById("signupPass").value;
+
+      let res = await fetch(API+"/signup", {
+        method:"POST", headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ pseudo, email, password })
+      });
+      let data = await res.json();
+      alert(data.success ? "Inscription réussie" : data.error);
+    }
+
+    async function login() {
+      let email = document.getElementById("loginEmail").value;
+      let password = document.getElementById("loginPass").value;
+
+      let res = await fetch(API+"/login", {
+        method:"POST", headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ email, password })
+      });
+      let data = await res.json();
+      if (data.success) {
+        token = data.token;
+        document.getElementById("auth").classList.add("hidden");
+        document.getElementById("app").classList.remove("hidden");
+        document.getElementById("welcome").innerText = "Bienvenue " + data.user.pseudo;
+        document.getElementById("friendCode").innerText = data.user.code;
+        loadSocket();
+      } else {
+        alert(data.error);
+      }
+    }
+
+    async function addFriend() {
+      let code = document.getElementById("friendInput").value;
+      let res = await fetch(API+"/add-friend", {
+        method:"POST", headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ token, code })
+      });
+      let data = await res.json();
+      if (data.success) {
+        document.getElementById("friendsList").innerText = data.friends.join(", ");
+      } else {
+        alert(data.error);
+      }
+    }
+
+    function loadSocket() {
+      socket = io(API);
+      socket.on("receiveMessage", (msg) => {
+        let box = document.getElementById("chatBox");
+        box.innerHTML += `<div class="message">${msg}</div>`;
+        box.scrollTop = box.scrollHeight;
+      });
+    }
+
+    function sendMessage() {
+      let msg = document.getElementById("chatInput").value;
+      socket.emit("sendMessage", msg);
+      document.getElementById("chatInput").value = "";
+    }
+  </script>
 </body>
 </html>
