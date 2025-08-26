@@ -714,89 +714,220 @@
 
         // Initialiser l'affichage du panier
         updateCartDisplay();
-    </script>
-    <!-- Section Chat -->
-<div style="position: fixed; bottom: 0; right: 0; width: 300px; background: white; border: 2px solid pink; border-radius: 10px 10px 0 0; padding: 10px;">
-    <h3>💬 Chat VIP</h3>
-    <input type="text" id="username" placeholder="Votre pseudo" />
-    <button onclick="registerUser()">Se connecter</button>
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>VIP Chat & Amis 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff1cac, #ff66c4, #ffb3e6);
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    <div id="friends"></div>
+    .chat-container {
+      width: 900px;
+      height: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff1cac, 0 0 40px #ff66c4;
+      display: flex;
+      overflow: hidden;
+    }
 
-    <div id="chatBox" style="display:none; margin-top: 10px;">
-        <h4 id="chatWith"></h4>
-        <div id="messages" style="height:150px; overflow-y:auto; border:1px solid #ccc; margin-bottom:10px; padding:5px;"></div>
-        <input type="text" id="msgInput" placeholder="Votre message" />
-        <button onclick="sendMessage()">Envoyer</button>
+    /* Liste d’amis */
+    .friends {
+      width: 250px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      border-right: 2px solid #ff66c4;
+    }
+
+    .friends h3 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #ffb3e6;
+      text-shadow: 0 0 10px #ff66c4;
+    }
+
+    .friend {
+      background: rgba(255,255,255,0.1);
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .friend:hover {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px #ff66c4;
+    }
+
+    /* Zone de chat */
+    .chat-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      padding: 15px;
+      background: rgba(0,0,0,0.5);
+      font-weight: bold;
+      font-size: 18px;
+      border-bottom: 2px solid #ff66c4;
+    }
+
+    .messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 60%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      word-wrap: break-word;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .from-me {
+      background: #ff66c4;
+      align-self: flex-end;
+      box-shadow: 0 0 10px #ff1cac;
+    }
+
+    .from-them {
+      background: #ffb3e6;
+      align-self: flex-start;
+      box-shadow: 0 0 10px #ff66c4;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 2px solid #ff66c4;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+    }
+
+    .chat-input button {
+      background: #ff1cac;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+      border-radius: 0 0 20px 0;
+    }
+
+    .chat-input button:hover {
+      background: #ff66c4;
+      box-shadow: 0 0 15px #ffb3e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <!-- Liste d’amis -->
+    <div class="friends">
+      <h3>👭 Amis</h3>
+      <input type="text" id="username" placeholder="Votre pseudo" style="padding:8px; border:none; border-radius:10px; margin-bottom:10px;">
+      <button onclick="registerUser()" style="padding:8px; background:#ff1cac; border:none; border-radius:10px; margin-bottom:10px; color:white; cursor:pointer;">Se connecter</button>
+      <div id="friendsList"></div>
     </div>
-</div>
 
-<script src="/socket.io/socket.io.js"></script>
-<script>
+    <!-- Chat -->
+    <div class="chat-box">
+      <div class="chat-header" id="chatWith">💬 Pas encore de chat</div>
+      <div class="messages" id="messages"></div>
+      <div class="chat-input">
+        <input type="text" id="msgInput" placeholder="Votre message..." />
+        <button onclick="sendMessage()">Envoyer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
     const socket = io();
     let currentUser = null;
     let chattingWith = null;
 
     function registerUser() {
-        const username = document.getElementById("username").value.trim();
-        if (!username) return alert("Entrez un pseudo !");
-        currentUser = username;
-        socket.emit("register", username);
-        alert("Connecté en tant que " + username);
+      const username = document.getElementById("username").value.trim();
+      if (!username) return alert("Entrez un pseudo !");
+      currentUser = username;
+      socket.emit("register", username);
+      alert("Connecté en tant que " + username);
     }
 
-    // Envoi d’un message
     function sendMessage() {
-        const msg = document.getElementById("msgInput").value;
-        if (!chattingWith || !msg) return;
-        socket.emit("chatMessage", { from: currentUser, to: chattingWith, message: msg });
-        addMessage(currentUser + " (vous)", msg);
-        document.getElementById("msgInput").value = "";
+      const msg = document.getElementById("msgInput").value;
+      if (!chattingWith || !msg) return;
+      socket.emit("chatMessage", { from: currentUser, to: chattingWith, message: msg });
+      addMessage("Vous", msg, true);
+      document.getElementById("msgInput").value = "";
     }
 
-    // Affiche un message dans le chat
-    function addMessage(from, msg) {
-        const messages = document.getElementById("messages");
-        const div = document.createElement("div");
-        div.innerHTML = `<b>${from}:</b> ${msg}`;
-        messages.appendChild(div);
-        messages.scrollTop = messages.scrollHeight;
+    function addMessage(from, msg, isMe = false) {
+      const messages = document.getElementById("messages");
+      const div = document.createElement("div");
+      div.className = "message " + (isMe ? "from-me" : "from-them");
+      div.innerHTML = `<b>${from}:</b> ${msg}`;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
     }
 
-    // Réception d’un message
     socket.on("chatMessage", ({ from, message }) => {
-        chattingWith = from;
-        document.getElementById("chatBox").style.display = "block";
-        document.getElementById("chatWith").innerText = "Chat avec " + from;
-        addMessage(from, message);
+      chattingWith = from;
+      document.getElementById("chatWith").innerText = "Chat avec " + from;
+      addMessage(from, message, false);
     });
 
-    // Réception d’une demande d’ami
-    socket.on("friendRequest", ({ from }) => {
-        const friendsDiv = document.getElementById("friends");
-        const btn = document.createElement("button");
-        btn.innerText = `Accepter ${from}`;
-        btn.onclick = () => {
-            socket.emit("acceptFriend", { from, to: currentUser });
-            btn.remove();
-        };
-        friendsDiv.appendChild(btn);
-    });
-
-    // Confirmation d’ami ajouté
     socket.on("friendAccepted", ({ friend }) => {
-        const friendsDiv = document.getElementById("friends");
-        const div = document.createElement("div");
-        div.innerHTML = `✅ Ami : ${friend} <button onclick="startChat('${friend}')">Chat</button>`;
-        friendsDiv.appendChild(div);
+      const list = document.getElementById("friendsList");
+      const btn = document.createElement("div");
+      btn.className = "friend";
+      btn.innerHTML = `✅ ${friend}`;
+      btn.onclick = () => startChat(friend);
+      list.appendChild(btn);
     });
 
-    // Commencer un chat avec un ami
     function startChat(friend) {
-        chattingWith = friend;
-        document.getElementById("chatBox").style.display = "block";
-        document.getElementById("chatWith").innerText = "Chat avec " + friend;
+      chattingWith = friend;
+      document.getElementById("chatWith").innerText = "Chat avec " + friend;
+      document.getElementById("messages").innerHTML = "";
     }
-</script>
+  </script>
 </body>
 </html>
