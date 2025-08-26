@@ -3,32 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique Girly</title>
+  <title>🌟 Boutique escorte 🌟</title>
   <style>
     body {
       margin: 0;
       font-family: "Comic Sans MS", cursive, sans-serif;
-      background: linear-gradient(135deg, #ffb6f9, #ff66cc);
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+      background-size: 400% 400%;
+      animation: gradientShift 3s ease infinite;
       color: #fff;
       text-align: center;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Étoiles animées en arrière-plan */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
     }
 
     header {
+      position: relative;
+      z-index: 10;
       padding: 30px;
-      font-size: 50px;
+      font-size: 60px;
       font-weight: bold;
       color: #fff;
-      text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff66ff;
-      animation: glow 2s infinite alternate;
+      text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff66ff;
+      animation: rainbow 2s linear infinite, bounce 1s ease infinite alternate;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff66ff, 0 0 20px #ff33ff; }
-      to { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff66ff; }
+    @keyframes rainbow {
+      0% { color: #ff0000; }
+      16% { color: #ff8000; }
+      33% { color: #ffff00; }
+      50% { color: #00ff00; }
+      66% { color: #0080ff; }
+      83% { color: #8000ff; }
+      100% { color: #ff0000; }
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
     }
 
     .products {
+      position: relative;
+      z-index: 10;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
@@ -38,116 +86,402 @@
     }
 
     .card {
-      background: rgba(255, 182, 249, 0.9);
-      border: 3px solid #ff66ff;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 0 20px #ff00ff;
-      transition: transform 0.3s ease;
+      background: rgba(255, 182, 249, 0.95);
+      border: 4px solid #ff66ff;
+      border-radius: 25px;
+      padding: 25px;
+      box-shadow: 0 0 30px #ff00ff;
+      transition: all 0.3s ease;
+      animation: cardFloat 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
     }
 
     .card:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 30px #ff00ff, 0 0 50px #ff66ff;
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 0 50px #ff00ff, 0 0 80px #ff66ff;
+      animation: none;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+      border-radius: 25px;
+      z-index: -1;
+      animation: borderRainbow 3s linear infinite;
+    }
+
+    @keyframes borderRainbow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .card h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: 32px;
+      margin-bottom: 15px;
       color: #fff;
-      text-shadow: 0 0 5px #ff00ff;
+      text-shadow: 0 0 10px #ff00ff;
+      animation: textPulse 2s ease infinite;
+    }
+
+    @keyframes textPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     .price {
-      font-size: 24px;
-      margin-bottom: 15px;
+      font-size: 28px;
+      margin-bottom: 20px;
       font-weight: bold;
       color: #fff;
+      animation: priceGlow 1.5s ease infinite;
+    }
+
+    @keyframes priceGlow {
+      0%, 100% { text-shadow: 0 0 5px #ffff00; }
+      50% { text-shadow: 0 0 20px #ffff00, 0 0 30px #ff00ff; }
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 20px;
+      padding: 15px 25px;
       border: none;
-      border-radius: 30px;
-      background: #ff33aa;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ff33aa, #ff6600, #ff33aa);
       color: white;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff66ff;
+      box-shadow: 0 0 20px #ff00ff;
       transition: all 0.3s ease;
+      animation: buttonPulse 2s ease infinite;
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% { box-shadow: 0 0 20px #ff00ff; }
+      50% { box-shadow: 0 0 40px #ff00ff, 0 0 60px #ff66ff; }
     }
 
     .btn:hover {
-      background: #ff0099;
-      box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff66ff;
-      transform: scale(1.05);
+      transform: scale(1.2) rotate(10deg);
+      background: linear-gradient(45deg, #ff0099, #ff3300, #ff0099);
+      animation: none;
     }
 
-    /* Popup */
+    /* Popups multiples */
     .popup {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #ff33aa;
+      background: linear-gradient(45deg, #ff33aa, #ff6600);
       padding: 20px;
       border-radius: 20px;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       color: #fff;
-      box-shadow: 0 0 20px #ff00ff;
-      display: none;
-      animation: fadeIn 1s ease forwards;
+      box-shadow: 0 0 30px #ff00ff;
+      z-index: 1000;
+      animation: popupBounce 0.5s ease forwards;
+      border: 3px solid #ffff00;
+      cursor: pointer;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.5); }
-      to { opacity: 1; transform: scale(1); }
+    @keyframes popupBounce {
+      0% { opacity: 0; transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .popup:hover {
+      transform: scale(1.1) rotate(5deg);
+      animation: shake 0.5s ease infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .close-popup {
+      position: absolute;
+      top: -5px;
+      right: 5px;
+      background: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Emojis volants */
+    .flying-emoji {
+      position: fixed;
+      font-size: 30px;
+      pointer-events: none;
+      z-index: 500;
+      animation: fly 5s linear forwards;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100px) translateX(200px) rotate(360deg); opacity: 0; }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 500;
+    }
+
+    .confetti:nth-child(odd) {
+      background: #ff00ff;
+      animation: confettiOdd 3s linear infinite;
+    }
+
+    .confetti:nth-child(even) {
+      background: #00ffff;
+      animation: confettiEven 3s linear infinite;
+    }
+
+    @keyframes confettiOdd {
+      0% { transform: translateY(-100px) translateX(0) rotate(0deg); }
+      100% { transform: translateY(100vh) translateX(100px) rotate(720deg); }
+    }
+
+    @keyframes confettiEven {
+      0% { transform: translateY(-100px) translateX(0) rotate(0deg); }
+      100% { transform: translateY(100vh) translateX(-100px) rotate(-720deg); }
     }
 
     footer {
-      padding: 20px;
+      position: relative;
+      z-index: 10;
+      padding: 30px;
       margin-top: 50px;
       background: rgba(255, 51, 170, 0.9);
-      box-shadow: 0 0 15px #ff00ff;
-      border-top: 3px solid #ff66ff;
-      font-size: 18px;
+      box-shadow: 0 0 25px #ff00ff;
+      border-top: 5px solid #ff66ff;
+      font-size: 22px;
+      animation: footerGlow 2s ease infinite;
+    }
+
+    @keyframes footerGlow {
+      0%, 100% { box-shadow: 0 0 25px #ff00ff; }
+      50% { box-shadow: 0 0 50px #ff00ff, 0 0 75px #ff66ff; }
+    }
+
+    /* Notification toast */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #00ff00, #00ffff);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      z-index: 2000;
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Curseur personnalisé */
+    * {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23ff00ff" stroke="%23ffffff" stroke-width="2"/></svg>'), auto;
     }
   </style>
 </head>
 <body>
-
-  <header>✨ Boutique Girly ✨</header>
-
+  <div class="stars" id="starContainer"></div>
+  
+  <header>🌟✨ BOUTIQUE GIRLY ULTRA ✨🌟</header>
+  
   <section class="products">
     <div class="card">
-      <h2>same_thunder</h2>
-      <p class="price">0,1€</p>
-      <button class="btn">Acheter</button>
+      <h2>🎮 same_thunder</h2>
+      <p class="price">💰 0,1€ 💰</p>
+      <button class="btn" onclick="acheter('same_thunder')">🛒 ACHETER! 🛒</button>
     </div>
     <div class="card">
-      <h2>el_nat</h2>
-      <p class="price">500€</p>
-      <button class="btn">Acheter</button>
+      <h2>👑 el_nat</h2>
+      <p class="price">💎 500€ 💎</p>
+      <button class="btn" onclick="acheter('el_nat')">💳 ACHETER! 💳</button>
     </div>
     <div class="card">
-      <h2>aaronvolt</h2>
-      <p class="price">1000€</p>
-      <button class="btn">Acheter</button>
+      <h2>⚡ aaronvolt</h2>
+      <p class="price">🔥 1000€ 🔥</p>
+      <button class="btn" onclick="acheter('aaronvolt')">💸 ACHETER! 💸</button>
     </div>
   </section>
 
-  <div class="popup" id="promoPopup">🎉 Promo spéciale : El_nat est en réduction de 50% ! 🎉</div>
-
-  <footer>© 2025 Boutique Girly - Tous droits réservés 💖</footer>
+  <footer>© 2025 Boutique Girly Ultra - Tous droits réservés 💖✨🌈</footer>
 
   <script>
-    // Afficher le popup après 2 secondes
-    setTimeout(() => {
-      document.getElementById("promoPopup").style.display = "block";
-    }, 2000);
-  </script>
+    // Messages amusants pour les popups
+    const messages = [
+      "🎉 PROMO FOLLE! El_nat à -50%! 🎉",
+      "⚡ FLASH SALE! Tout à -80%! ⚡",
+      "🔥 OFFRE LIMITÉE! Achetez maintenant! 🔥",
+      "💎 DEAL EXCLUSIF! Ne manquez pas ça! 💎",
+      "🌟 SUPER PROMO! Dernière chance! 🌟",
+      "🎊 MÉGA SOLDES! Prix cassés! 🎊",
+      "🚀 VENTE ÉCLAIR! Dépêchez-vous! 🚀",
+      "💝 CADEAU GRATUIT avec tout achat! 💝"
+    ];
 
+    const emojis = ['🌟', '✨', '💖', '🎉', '🔥', '💎', '👑', '⚡', '🌈', '💝', '🎊', '🚀'];
+
+    // Créer des étoiles
+    function createStars() {
+      const starContainer = document.getElementById('starContainer');
+      for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 2 + 's';
+        starContainer.appendChild(star);
+      }
+    }
+
+    // Créer des popups aléatoires
+    function createPopup() {
+      const popup = document.createElement('div');
+      popup.className = 'popup';
+      popup.innerHTML = messages[Math.floor(Math.random() * messages.length)] + 
+                       '<button class="close-popup" onclick="this.parentElement.remove()">×</button>';
+      
+      // Position aléatoire
+      popup.style.top = Math.random() * (window.innerHeight - 200) + 'px';
+      popup.style.left = Math.random() * (window.innerWidth - 300) + 'px';
+      
+      document.body.appendChild(popup);
+      
+      // Auto-supprimer après 5 secondes
+      setTimeout(() => {
+        if (popup.parentElement) {
+          popup.remove();
+        }
+      }, 5000);
+    }
+
+    // Créer des emojis volants
+    function createFlyingEmoji() {
+      const emoji = document.createElement('div');
+      emoji.className = 'flying-emoji';
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * window.innerWidth + 'px';
+      emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      
+      document.body.appendChild(emoji);
+      
+      setTimeout(() => {
+        emoji.remove();
+      }, 5000);
+    }
+
+    // Créer des confetti
+    function createConfetti() {
+      for (let i = 0; i < 10; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.animationDelay = Math.random() * 2 + 's';
+        
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => {
+          confetti.remove();
+        }, 3000);
+      }
+    }
+
+    // Fonction d'achat
+    function acheter(produit) {
+      // Toast notification
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = `🎉 ${produit} ajouté au panier! 🛒`;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+      
+      // Explosion d'effets
+      createConfetti();
+      for (let i = 0; i < 5; i++) {
+        setTimeout(createFlyingEmoji, i * 200);
+      }
+    }
+
+    // Initialisation
+    window.onload = function() {
+      createStars();
+      
+      // Popups réguliers
+      setInterval(createPopup, 3000);
+      
+      // Emojis volants réguliers
+      setInterval(createFlyingEmoji, 2000);
+      
+      // Confetti périodiques
+      setInterval(createConfetti, 8000);
+      
+      // Premier popup
+      setTimeout(createPopup, 1000);
+    };
+
+    // Effet de clic sur la page
+    document.addEventListener('click', function(e) {
+      // Créer des cercles colorés au clic
+      const circle = document.createElement('div');
+      circle.style.position = 'fixed';
+      circle.style.left = e.clientX - 25 + 'px';
+      circle.style.top = e.clientY - 25 + 'px';
+      circle.style.width = '50px';
+      circle.style.height = '50px';
+      circle.style.borderRadius = '50%';
+      circle.style.background = 'radial-gradient(circle, #ff00ff, transparent)';
+      circle.style.pointerEvents = 'none';
+      circle.style.zIndex = '999';
+      circle.style.animation = 'clickEffect 0.8s ease forwards';
+      
+      document.body.appendChild(circle);
+      
+      setTimeout(() => {
+        circle.remove();
+      }, 800);
+    });
+
+    // Animation du clic
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes clickEffect {
+        0% { transform: scale(0); opacity: 1; }
+        100% { transform: scale(2); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
