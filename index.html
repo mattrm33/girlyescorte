@@ -1,487 +1,603 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌟 Boutique escorte 🌟</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Comic Sans MS", cursive, sans-serif;
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-      background-size: 400% 400%;
-      animation: gradientShift 3s ease infinite;
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
-      position: relative;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Girly Services Premium 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #ffc0cb, #ffb6c1);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    /* Étoiles animées en arrière-plan */
-    .stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    .star {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 2s infinite;
-    }
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 20, 147, 0.9);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
+        }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.5); }
-    }
+        .neon-title {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 
+                0 0 5px #ff69b4,
+                0 0 10px #ff69b4,
+                0 0 15px #ff69b4,
+                0 0 20px #ff69b4,
+                0 0 30px #ff1493,
+                0 0 40px #ff1493;
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
 
-    header {
-      position: relative;
-      z-index: 10;
-      padding: 30px;
-      font-size: 60px;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff66ff;
-      animation: rainbow 2s linear infinite, bounce 1s ease infinite alternate;
-    }
+        @keyframes neonGlow {
+            from {
+                text-shadow: 
+                    0 0 5px #ff69b4,
+                    0 0 10px #ff69b4,
+                    0 0 15px #ff69b4,
+                    0 0 20px #ff69b4,
+                    0 0 30px #ff1493,
+                    0 0 40px #ff1493;
+            }
+            to {
+                text-shadow: 
+                    0 0 2px #ff69b4,
+                    0 0 5px #ff69b4,
+                    0 0 8px #ff69b4,
+                    0 0 12px #ff69b4,
+                    0 0 18px #ff1493,
+                    0 0 25px #ff1493;
+            }
+        }
 
-    @keyframes rainbow {
-      0% { color: #ff0000; }
-      16% { color: #ff8000; }
-      33% { color: #ffff00; }
-      50% { color: #00ff00; }
-      66% { color: #0080ff; }
-      83% { color: #8000ff; }
-      100% { color: #ff0000; }
-    }
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to { transform: translateY(-20px); }
-    }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff69b4;
+            animation: floatUp 6s infinite linear;
+        }
 
-    .products {
-      position: relative;
-      z-index: 10;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      padding: 40px;
-      max-width: 1200px;
-      margin: auto;
-    }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    .card {
-      background: rgba(255, 182, 249, 0.95);
-      border: 4px solid #ff66ff;
-      border-radius: 25px;
-      padding: 25px;
-      box-shadow: 0 0 30px #ff00ff;
-      transition: all 0.3s ease;
-      animation: cardFloat 3s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-    }
+        .services-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
 
-    @keyframes cardFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
-    }
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            border: 3px solid #ff69b4;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .card:hover {
-      transform: scale(1.15) rotate(5deg);
-      box-shadow: 0 0 50px #ff00ff, 0 0 80px #ff66ff;
-      animation: none;
-    }
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.6);
+        }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-      border-radius: 25px;
-      z-index: -1;
-      animation: borderRainbow 3s linear infinite;
-    }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 105, 180, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
 
-    @keyframes borderRainbow {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        .service-card:hover::before {
+            animation: shimmer 1s ease-in-out;
+        }
 
-    .card h2 {
-      font-size: 32px;
-      margin-bottom: 15px;
-      color: #fff;
-      text-shadow: 0 0 10px #ff00ff;
-      animation: textPulse 2s ease infinite;
-    }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
 
-    @keyframes textPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
+        .service-title {
+            font-size: 1.8rem;
+            color: #ff1493;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .price {
-      font-size: 28px;
-      margin-bottom: 20px;
-      font-weight: bold;
-      color: #fff;
-      animation: priceGlow 1.5s ease infinite;
-    }
+        .service-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+            justify-content: center;
+        }
 
-    @keyframes priceGlow {
-      0%, 100% { text-shadow: 0 0 5px #ffff00; }
-      50% { text-shadow: 0 0 20px #ffff00, 0 0 30px #ff00ff; }
-    }
+        .category-tag {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
 
-    .btn {
-      display: inline-block;
-      padding: 15px 25px;
-      border: none;
-      border-radius: 50px;
-      background: linear-gradient(45deg, #ff33aa, #ff6600, #ff33aa);
-      color: white;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 20px #ff00ff;
-      transition: all 0.3s ease;
-      animation: buttonPulse 2s ease infinite;
-    }
+        .service-price {
+            font-size: 2rem;
+            color: #ff69b4;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+        }
 
-    @keyframes buttonPulse {
-      0%, 100% { box-shadow: 0 0 20px #ff00ff; }
-      50% { box-shadow: 0 0 40px #ff00ff, 0 0 60px #ff66ff; }
-    }
+        .order-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .btn:hover {
-      transform: scale(1.2) rotate(10deg);
-      background: linear-gradient(45deg, #ff0099, #ff3300, #ff0099);
-      animation: none;
-    }
+        .order-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+        }
 
-    /* Popups multiples */
-    .popup {
-      position: fixed;
-      background: linear-gradient(45deg, #ff33aa, #ff6600);
-      padding: 20px;
-      border-radius: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #fff;
-      box-shadow: 0 0 30px #ff00ff;
-      z-index: 1000;
-      animation: popupBounce 0.5s ease forwards;
-      border: 3px solid #ffff00;
-      cursor: pointer;
-    }
+        .order-btn:active {
+            transform: scale(0.95);
+        }
 
-    @keyframes popupBounce {
-      0% { opacity: 0; transform: scale(0); }
-      50% { transform: scale(1.2); }
-      100% { opacity: 1; transform: scale(1); }
-    }
+        /* Pop-up centré style pub */
+        .center-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            z-index: 10000;
+            animation: popupBounce 0.5s ease-out;
+            max-width: 400px;
+            min-width: 300px;
+            border: 3px solid #ffd700;
+        }
 
-    .popup:hover {
-      transform: scale(1.1) rotate(5deg);
-      animation: shake 0.5s ease infinite;
-    }
+        @keyframes popupBounce {
+            0% {
+                transform: translate(-50%, -50%) scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
 
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
-    }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+        }
 
-    .close-popup {
-      position: absolute;
-      top: -5px;
-      right: 5px;
-      background: #ff0000;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+        .close-popup-x {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff1493;
+            border: 2px solid white;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
 
-    /* Emojis volants */
-    .flying-emoji {
-      position: fixed;
-      font-size: 30px;
-      pointer-events: none;
-      z-index: 500;
-      animation: fly 5s linear forwards;
-    }
+        .close-popup-x:hover {
+            background: #dc143c;
+            transform: scale(1.1);
+        }
 
-    @keyframes fly {
-      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-100px) translateX(200px) rotate(360deg); opacity: 0; }
-    }
+        .popup-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-    /* Confetti */
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      pointer-events: none;
-      z-index: 500;
-    }
+        .popup-content {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
 
-    .confetti:nth-child(odd) {
-      background: #ff00ff;
-      animation: confettiOdd 3s linear infinite;
-    }
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
 
-    .confetti:nth-child(even) {
-      background: #00ffff;
-      animation: confettiEven 3s linear infinite;
-    }
+        .sparkle {
+            position: absolute;
+            font-size: 15px;
+            color: #ffd700;
+            animation: sparkleAnim 3s infinite;
+        }
 
-    @keyframes confettiOdd {
-      0% { transform: translateY(-100px) translateX(0) rotate(0deg); }
-      100% { transform: translateY(100vh) translateX(100px) rotate(720deg); }
-    }
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
 
-    @keyframes confettiEven {
-      0% { transform: translateY(-100px) translateX(0) rotate(0deg); }
-      100% { transform: translateY(100vh) translateX(-100px) rotate(-720deg); }
-    }
+        .customer-input {
+            margin: 15px 0;
+            padding: 10px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
 
-    footer {
-      position: relative;
-      z-index: 10;
-      padding: 30px;
-      margin-top: 50px;
-      background: rgba(255, 51, 170, 0.9);
-      box-shadow: 0 0 25px #ff00ff;
-      border-top: 5px solid #ff66ff;
-      font-size: 22px;
-      animation: footerGlow 2s ease infinite;
-    }
+        .customer-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        }
 
-    @keyframes footerGlow {
-      0%, 100% { box-shadow: 0 0 25px #ff00ff; }
-      50% { box-shadow: 0 0 50px #ff00ff, 0 0 75px #ff66ff; }
-    }
+        .promo-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+            z-index: 1000;
+            cursor: pointer;
+        }
 
-    /* Notification toast */
-    .toast {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(45deg, #00ff00, #00ffff);
-      color: white;
-      padding: 15px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      z-index: 2000;
-      animation: slideIn 0.5s ease forwards;
-    }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
 
-    @keyframes slideIn {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(0); }
-    }
+        .glitter {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: glitterFall 3s linear infinite;
+        }
 
-    /* Curseur personnalisé */
-    * {
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23ff00ff" stroke="%23ffffff" stroke-width="2"/></svg>'), auto;
-    }
-  </style>
+        @keyframes glitterFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .blinking-offer {
+            animation: blink 1s infinite;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-  <div class="stars" id="starContainer"></div>
-  
-  <header>🌟✨ BOUTIQUE ESCORTE ✨🌟</header>
-  
-  <section class="products">
-    <div class="card">
-      <h2>🎮 same_thunder</h2>
-      <p class="price">💰 0,1€ 💰</p>
-      <button class="btn" onclick="acheter('same_thunder')">🛒 ACHETER! 🛒</button>
+    <div class="floating-hearts" id="hearts"></div>
+
+    <header class="header">
+        <h1 class="neon-title">✨ Girly Services Premium ✨</h1>
+        <p style="color: white; font-size: 1.2rem; margin-top: 10px;">Des services de qualité avec style ! 💖</p>
+    </header>
+
+    <div class="services-container">
+        <div class="service-card">
+            <h2 class="service-title">⚡ Same_Thunder</h2>
+            <div class="service-categories">
+                <span class="category-tag">📷 Photos pieds</span>
+                <span class="category-tag">🏠 À domicile</span>
+                <span class="category-tag">⚡ Express</span>
+            </div>
+            <div class="service-price">0,10€</div>
+            <input type="text" class="customer-input" placeholder="Votre nom ✨" id="name1">
+            <button class="order-btn" onclick="orderService('Same_Thunder', '0,10€', 'name1')">
+                Commander maintenant ! 💕
+            </button>
+        </div>
+
+        <div class="service-card">
+            <h2 class="service-title">🌟 El_Nat</h2>
+            <div class="service-categories">
+                <span class="category-tag">📸 Photos pieds</span>
+                <span class="category-tag">🏠 Services à domicile</span>
+                <span class="category-tag">💎 Premium</span>
+                <span class="category-tag">🔥 Populaire</span>
+            </div>
+            <div class="service-price">500€</div>
+            <input type="text" class="customer-input" placeholder="Votre nom ✨" id="name2">
+            <button class="order-btn" onclick="orderService('El_Nat', '500€', 'name2')">
+                Commander maintenant ! 💖
+            </button>
+        </div>
+
+        <div class="service-card">
+            <h2 class="service-title">⚡ AaronVolt</h2>
+            <div class="service-categories">
+                <span class="category-tag">📷 Photos pieds</span>
+                <span class="category-tag">🏠 À domicile</span>
+                <span class="category-tag">👑 VIP</span>
+                <span class="category-tag">✨ Exclusif</span>
+            </div>
+            <div class="service-price">1000€</div>
+            <input type="text" class="customer-input" placeholder="Votre nom ✨" id="name3">
+            <button class="order-btn" onclick="orderService('AaronVolt', '1000€', 'name3')">
+                Commander maintenant ! 💫
+            </button>
+        </div>
     </div>
-    <div class="card">
-      <h2>👑 el_nat</h2>
-      <p class="price">💎 500€ 💎</p>
-      <button class="btn" onclick="acheter('el_nat')">💳 ACHETER! 💳</button>
+
+    <div class="promo-banner" onclick="showCenterPopup('🎉 OFFRE SPÉCIALE ! 🎉', 'Profitez de nos réductions exceptionnelles ! Cliquez vite ! ⚡')">
+        🎉 OFFRE SPÉCIALE ! Cliquez ici ! 🎉
     </div>
-    <div class="card">
-      <h2>⚡ aaronvolt</h2>
-      <p class="price">🔥 1000€ 🔥</p>
-      <button class="btn" onclick="acheter('aaronvolt')">💸 ACHETER! 💸</button>
-    </div>
-  </section>
 
-  <footer>© 2025 Boutique escorte - Tous droits réservés 💖✨🌈</footer>
+    <script>
+        // Messages de popup aléatoires
+        const randomPopups = [
+            {
+                title: '🔥 RÉDUCTION FLASH ! 🔥',
+                content: 'El_Nat à -50% ! <br><span class="blinking-offer">OFFRE LIMITÉE !</span><br>Plus que 3 places disponibles ! 💖'
+            },
+            {
+                title: '⚡ ALERTE PROMO ⚡',
+                content: 'Félicitations ! Vous avez été sélectionné(e) pour une offre exclusive ! <br>🎁 Code promo : GIRLY50 🎁'
+            },
+            {
+                title: '💸 DERNIÈRE CHANCE 💸',
+                content: '<span class="blinking-offer">VENTE FLASH</span><br>Same_Thunder GRATUIT pour les 5 prochaines commandes ! ⏰'
+            },
+            {
+                title: '👑 DEVENIR VIP 👑',
+                content: 'Accès VIP disponible ! <br>Débloquez tous les services premium ! ✨<br><span class="blinking-offer">CLIQUEZ ICI !</span>'
+            },
+            {
+                title: '🚨 STOCK LIMITÉ 🚨',
+                content: 'AaronVolt presque en rupture de stock ! <br>Plus que 2 créneaux disponibles aujourd\'hui ! ⚡'
+            },
+            {
+                title: '💎 OFFRE DIAMANT 💎',
+                content: 'Pack spécial : 3 services pour le prix de 2 ! <br><span class="blinking-offer">AUJOURD\'HUI SEULEMENT !</span> 💖'
+            }
+        ];
 
-  <script>
-    // Messages amusants pour les popups
-    const messages = [
-      "🎉 PROMO FOLLE! El_nat à -50%! 🎉",
-      "⚡ FLASH SALE! Tout à -80%! ⚡",
-      "🔥 OFFRE LIMITÉE! Achetez maintenant! 🔥",
-      "💎 DEAL EXCLUSIF! Ne manquez pas ça! 💎",
-      "🌟 SUPER PROMO! Dernière chance! 🌟",
-      "🎊 MÉGA SOLDES! Prix cassés! 🎊",
-      "🚀 VENTE ÉCLAIR! Dépêchez-vous! 🚀",
-      "💝 CADEAU GRATUIT avec tout achat! 💝"
-    ];
-
-    const emojis = ['🌟', '✨', '💖', '🎉', '🔥', '💎', '👑', '⚡', '🌈', '💝', '🎊', '🚀'];
-
-    // Créer des étoiles
-    function createStars() {
-      const starContainer = document.getElementById('starContainer');
-      for (let i = 0; i < 50; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 2 + 's';
-        starContainer.appendChild(star);
-      }
-    }
-
-    // Créer des popups aléatoires
-    function createPopup() {
-      const popup = document.createElement('div');
-      popup.className = 'popup';
-      popup.innerHTML = messages[Math.floor(Math.random() * messages.length)] + 
-                       '<button class="close-popup" onclick="this.parentElement.remove()">×</button>';
-      
-      // Position aléatoire
-      popup.style.top = Math.random() * (window.innerHeight - 200) + 'px';
-      popup.style.left = Math.random() * (window.innerWidth - 300) + 'px';
-      
-      document.body.appendChild(popup);
-      
-      // Auto-supprimer après 5 secondes
-      setTimeout(() => {
-        if (popup.parentElement) {
-          popup.remove();
+        // Créer des cœurs flottants
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.opacity = Math.random();
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
         }
-      }, 5000);
-    }
 
-    // Créer des emojis volants
-    function createFlyingEmoji() {
-      const emoji = document.createElement('div');
-      emoji.className = 'flying-emoji';
-      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = Math.random() * window.innerWidth + 'px';
-      emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      
-      document.body.appendChild(emoji);
-      
-      setTimeout(() => {
-        emoji.remove();
-      }, 5000);
-    }
+        // Créer des paillettes
+        function createGlitter() {
+            const glitter = document.createElement('div');
+            glitter.className = 'glitter';
+            glitter.style.left = Math.random() * 100 + 'vw';
+            glitter.style.top = '-5px';
+            document.body.appendChild(glitter);
+            
+            setTimeout(() => {
+                glitter.remove();
+            }, 3000);
+        }
 
-    // Créer des confetti
-    function createConfetti() {
-      for (let i = 0; i < 10; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.animationDelay = Math.random() * 2 + 's';
-        
-        document.body.appendChild(confetti);
-        
+        // Fonction pour commander un service
+        function orderService(service, price, nameInputId) {
+            const customerName = document.getElementById(nameInputId).value.trim();
+            if (!customerName) {
+                showCenterPopup('💕 Attention ! 💕', 'Veuillez entrer votre nom pour commander ! ✨');
+                return;
+            }
+            
+            const neonName = `✨ ${customerName.toUpperCase()} ✨`;
+            showCenterPopup('🎉 Commande confirmée ! 🎉', `${neonName} a commandé ${service} pour ${price} ! 💖<br><br>Préparation en cours... ⚡`);
+            
+            // Effets visuels
+            for(let i = 0; i < 10; i++) {
+                setTimeout(() => createGlitter(), i * 100);
+            }
+        }
+
+        // Afficher popup centrée avec overlay
+        function showCenterPopup(title, content) {
+            // Créer l'overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'popup-overlay';
+            
+            // Créer la popup
+            const popup = document.createElement('div');
+            popup.className = 'center-popup';
+            
+            // Ajouter les sparkles
+            const sparkles = document.createElement('div');
+            sparkles.className = 'sparkles';
+            for(let i = 0; i < 8; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = '✨';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparkles.appendChild(sparkle);
+            }
+            popup.appendChild(sparkles);
+            
+            popup.innerHTML += `
+                <button class="close-popup-x" onclick="closeAllPopups()">×</button>
+                <div class="popup-title">${title}</div>
+                <div class="popup-content">${content}</div>
+            `;
+            
+            // Fermer la popup en cliquant sur l'overlay
+            overlay.onclick = closeAllPopups;
+            
+            document.body.appendChild(overlay);
+            document.body.appendChild(popup);
+            
+            // Auto-fermeture après 8 secondes
+            setTimeout(() => {
+                closeAllPopups();
+            }, 8000);
+        }
+
+        // Fermer toutes les popups
+        function closeAllPopups() {
+            const overlays = document.querySelectorAll('.popup-overlay');
+            const popups = document.querySelectorAll('.center-popup');
+            
+            overlays.forEach(overlay => overlay.remove());
+            popups.forEach(popup => popup.remove());
+        }
+
+        // Popup aléatoire comme les pubs
+        function showRandomPopup() {
+            const randomPopup = randomPopups[Math.floor(Math.random() * randomPopups.length)];
+            showCenterPopup(randomPopup.title, randomPopup.content);
+        }
+
+        // Intervalles pour les effets
+        setInterval(createHeart, 1000);
+        setInterval(createGlitter, 1500);
+
+        // Popup aléatoires à intervalles irréguliers (comme les vraies pubs chiantes)
+        function scheduleRandomPopup() {
+            const delay = Math.random() * 15000 + 5000; // Entre 5 et 20 secondes
+            setTimeout(() => {
+                showRandomPopup();
+                scheduleRandomPopup(); // Programmer la suivante
+            }, delay);
+        }
+
+        // Démarrer les popups aléatoires
         setTimeout(() => {
-          confetti.remove();
+            scheduleRandomPopup();
         }, 3000);
-      }
-    }
 
-    // Fonction d'achat
-    function acheter(produit) {
-      // Toast notification
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.textContent = `🎉 ${produit} ajouté au panier! 🛒`;
-      document.body.appendChild(toast);
-      
-      setTimeout(() => {
-        toast.remove();
-      }, 3000);
-      
-      // Explosion d'effets
-      createConfetti();
-      for (let i = 0; i < 5; i++) {
-        setTimeout(createFlyingEmoji, i * 200);
-      }
-    }
+        // Popup de bienvenue
+        setTimeout(() => {
+            showCenterPopup('💖 Bienvenue ! 💖', 'Bienvenue sur Girly Services ! ✨<br>Découvrez nos offres exceptionnelles !<br><span class="blinking-offer">PROMOTION EN COURS !</span>');
+        }, 2000);
 
-    // Initialisation
-    window.onload = function() {
-      createStars();
-      
-      // Popups réguliers
-      setInterval(createPopup, 3000);
-      
-      // Emojis volants réguliers
-      setInterval(createFlyingEmoji, 2000);
-      
-      // Confetti périodiques
-      setInterval(createConfetti, 8000);
-      
-      // Premier popup
-      setTimeout(createPopup, 1000);
-    };
+        // Effets au clic
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('order-btn')) {
+                for(let i = 0; i < 5; i++) {
+                    setTimeout(() => createGlitter(), i * 200);
+                }
+            }
+        });
 
-    // Effet de clic sur la page
-    document.addEventListener('click', function(e) {
-      // Créer des cercles colorés au clic
-      const circle = document.createElement('div');
-      circle.style.position = 'fixed';
-      circle.style.left = e.clientX - 25 + 'px';
-      circle.style.top = e.clientY - 25 + 'px';
-      circle.style.width = '50px';
-      circle.style.height = '50px';
-      circle.style.borderRadius = '50%';
-      circle.style.background = 'radial-gradient(circle, #ff00ff, transparent)';
-      circle.style.pointerEvents = 'none';
-      circle.style.zIndex = '999';
-      circle.style.animation = 'clickEffect 0.8s ease forwards';
-      
-      document.body.appendChild(circle);
-      
-      setTimeout(() => {
-        circle.remove();
-      }, 800);
-    });
+        // Popup spéciale après 10 secondes d'inactivité
+        let inactivityTimer;
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                showCenterPopup('😴 Toujours là ? 😴', 'Ne ratez pas nos offres limitées ! <br><span class="blinking-offer">ACHETEZ MAINTENANT !</span> 💖');
+            }, 10000);
+        }
 
-    // Animation du clic
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes clickEffect {
-        0% { transform: scale(0); opacity: 1; }
-        100% { transform: scale(2); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-  </script>
+        // Réinitialiser le timer d'inactivité sur n'importe quelle action
+        document.addEventListener('mousemove', resetInactivityTimer);
+        document.addEventListener('click', resetInactivityTimer);
+        document.addEventListener('keypress', resetInactivityTimer);
+
+        resetInactivityTimer();
+    </script>
 </body>
 </html>
